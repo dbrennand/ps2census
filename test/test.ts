@@ -12,6 +12,12 @@ if (!process.env.SERVICE_ID)
 
 const client = new CensusClient(process.env.SERVICE_ID, 'ps2', {
   streamManager: {
+    streamConfig: {
+      wsOptions: {
+        rejectUnauthorized:
+          process.env.REJECTUNAUTHORIZED === 'true' ? true : false,
+      },
+    },
     subscription: {
       characters: ['all'],
       worlds: ['all'],
